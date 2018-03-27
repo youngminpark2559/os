@@ -76,13 +76,17 @@ keyboard iteration
 mute: ctrl win
 v down: ctrl context
 v up: ctrl ctrlR
-launcher icon size: 30
+launcher icon size: 26
 
 sudo vi /etc/apt/sources.list
 :
 %s/kr.archive.ubuntu.com/ftp.daumkakao.com
 :wq
 sudo apt-get update
+
+@
+sudo apt-get install dconf-editor
+dconf-editor
 
 
 @
@@ -148,6 +152,16 @@ disk 100gb
 3d, 2d accelator
 sudo adduser username vboxsf or sudo gpasswd -a username vboxsf
 
+   
+
+@
+vscode
+   
+@
+atom
+   
+@
+sublimetext3
    
    
    
