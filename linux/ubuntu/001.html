@@ -268,7 +268,28 @@ or
 $./Anaconda3-5.1.0-Linux-x86_64.sh
    
    
-   
+@
+tensorflow
+sudo apt-get install python3-pip python3-dev
+pip3 install tensorflow
+
+
+@
+konlpy
+sudo apt-get install g++ openjdk-9-jdk
+pip3 install JPype1
+pip3 install konlpy
+sudo apt-get install curl
+bash <(curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh)
+            
+
+@
+conda install -c conda-forge jupyterlab
+or
+pip install jupyterlab
+            
+            
+            
 </xmp>
    </BODY>
 </HTML>
