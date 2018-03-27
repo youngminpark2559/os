@@ -85,8 +85,31 @@ sudo vi /etc/apt/sources.list
 sudo apt-get update
 
 http://www.nvidia.co.kr/download/driverResults.aspx/130065/kr
-chmod +x NVIDIA-Linux-x86_64-340.106.run or
-./NVIDIA-Linux-x86_64-340.106.run
+file: NVIDIA-Linux-x86_64-340.106.run
+ctrl alt f1
+Remove installed graphic drivers
+   sudo apt-get remove nvidia* && sudo apt-get autoremove
+Stop nuoveau
+   sudo vi /etc/modprobe.d/blacklist-nouveau.conf
+   Add following codes into blacklist-nouveau.conf
+      blacklist nouveau
+      blacklist lbm-nouveau
+      options nouveau modeset=0
+      alias nouveau off
+      alias lbm-nouveau off
+   echo options nouveau modeset=0|sudo tee -a /etc/modprobe.d/nouveau-kms.conf
+   sudo update-initramfs -u
+sudo reboot
+Stop display manager
+   sudo service lightdm stop
+sudo ./NVIDIA-Linux-x86_64-340.106.run
+
+Automatical install graphic driver
+sudo apt-get install nvidia-361 libcuda1-361 nvidia-libopencl1-361 nvidia-opencl-icd-361 nvidia-prime nvidia-settings
+sudo nvidia-xconfig
+sudo reboot
+sudo nvidia-settings
+
 
 
    
