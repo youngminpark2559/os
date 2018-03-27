@@ -110,8 +110,21 @@ sudo nvidia-xconfig
 sudo reboot
 sudo nvidia-settings
 
+Articles for infinite login loop
+https://askubuntu.com/questions/762831/ubuntu-16-stuck-in-login-loop-after-installing-nvidia-364-drivers
+sudo ubuntu-drivers list
+then use:
+sudo ubuntu-drivers autoinstall
+For me, this updated the driver for my nvidia quadroFx 3800 in a way that using sudo apt-get install nvidia-current would not.
+After autoinstall, invoke another tty (ex. ctrl+alt+f1) and
+sudo service lightdm restart
 
-
+sudo apt-get remove nvidia-*
+sudo apt-get autoremove
+Uninstall the drivers from the .run file:
+sudo nvidia-uninstall
+   
+   
    
    
    
