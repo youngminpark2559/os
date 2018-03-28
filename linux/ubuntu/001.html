@@ -241,7 +241,11 @@ format, partition
 1. format partition: sudo mkfs.ext4 /dev/sbd1
 1. mount partition: mount /dev/sbd1 /media
 
-   
+1. get uuid: sudo blkid
+1. sudo vi /etc/fstab
+<식별번호> <마운트포인트> <파일시스템> <옵션> <dump옵션> <fsck옵션>
+/dev/sdb1: UUID="c0a832a2-3ca5-49bc-8fd8-3933b8f5972a" TYPE="ext4" PARTUUID="0fb10fb0-01"
+UUID=c0a832a2-3ca5-49bc-8fd8-3933b8f5972a /dev/sdb1 ext4 defaults 0 0
    
    
 @   
