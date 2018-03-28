@@ -230,6 +230,17 @@ sudo adduser username vboxsf or sudo gpasswd -a username vboxsf
 
    
 
+@
+format, partition
+1. unmount
+1. sudo fdisk -l
+1. delete partition: d
+1. create partition: n
+1. select primary
+1. save and quit: w
+1. format partition: sudo mkfs.ext4 /dev/sbd1
+1. mount partition: mount /dev/sbd1 /media
+
    
    
    
