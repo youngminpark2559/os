@@ -321,8 +321,10 @@ $./Anaconda3-5.1.0-Linux-x86_64.sh
    
    
 @
-tensorflow
-sudo apt-get install python3-pip python3-dev
+install tensorflow
+conda create -n tensorflow
+conda info --envs
+source activate tensorflow
 pip3 install tensorflow
 
 
