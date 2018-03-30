@@ -114,7 +114,7 @@ Stop display manager
    sudo service lightdm stop
 sudo ./NVIDIA-Linux-x86_64-340.106.run
 
-Automatical install graphic driver
+Automatical install graphic driver(this makes infinite login loop)
 sudo apt-get install nvidia-361 libcuda1-361 nvidia-libopencl1-361 nvidia-opencl-icd-361 nvidia-prime nvidia-settings
 sudo nvidia-xconfig
 sudo reboot
@@ -133,6 +133,7 @@ sudo apt-get remove nvidia-*
 sudo apt-get autoremove
 Uninstall the drivers from the .run file:
 sudo nvidia-uninstall
+apt-get install nvidia-340
    
    
 @
