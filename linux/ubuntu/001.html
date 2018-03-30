@@ -338,12 +338,15 @@ $./Anaconda3-5.1.0-Linux-x86_64.sh
    
    
 @
-install tensorflow
-conda create -n tensorflow
+   - install tensorflow
+conda create -n tensorflow (x)
+source activate tensorflow (x)
+   - install in base
 conda info --envs
-source activate tensorflow
+source activate (base)
 pip3 install tensorflow
 source deactivate
+   - how to remove conda space
 conda remove --name tensorflow --all
 
 @
