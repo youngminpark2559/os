@@ -273,6 +273,18 @@ chmod +w /media/sda/
 ls -all /media/
    
    
+@
+Reinstall Alsa and Pulse Audio
+sudo apt-get remove --purge alsa-base pulseaudio
+sudo apt-get install alsa-base pulseaudio
+sudo alsa force-reload
+
+
+Install Ubuntu Audio Development Team Driver
+sudo add-apt-repository ppa:ubuntu-audio-dev
+sudo apt-get update
+sudo apt-get dist-upgrade
+   
    
    
 @   
