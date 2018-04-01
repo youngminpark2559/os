@@ -379,6 +379,15 @@ pip install jupyterlab
 sudo apt update && sudo apt install texlive-full
 
             
+@
+docker
+ - install
+curl -fsSL https://get.docker.com/ | sudo sh
+ - give permission
+sudo usermod -aG docker $USER # give permission to user who is currently connected
+sudo usermod -aG docker your-user # give permission to user-name
+sudo reboot
+            
 </xmp>
    </BODY>
 </HTML>
