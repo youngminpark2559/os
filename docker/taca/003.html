@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+   <HEAD>
+      <TITLE>My first HTML document</TITLE>
+      <style rel="stylesheet" type="text/css">
+body {
+ font-size: 25px;
+ 
+ margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 80px;
+    margin-left: 80px;
+    
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 80px;
+    padding-left: 80px;
+    
+    line-height:1.6em
+}
+</style>
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS" : {
+        availableFonts : ["STIX"],
+        preferredFont : "STIX",
+        webFont : "STIX-Web",
+        imageFont : null
+    }
+});
+</script>
+     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js" type="text/javascript">    
+    MathJax.Hub.Config({
+        HTML: ["input/TeX","output/HTML-CSS"],
+        TeX: { extensions: ["AMSmath.js","AMSsymbols.js"], 
+               equationNumbers: { autoNumber: "AMS" } },
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX","output/HTML-CSS"],
+        tex2jax: { inlineMath: [ ['$$$','$$$'] ],
+                   displayMath: [ ['$$$$','$$$$'] ],
+                   processEscapes: true },
+        "HTML-CSS": { availableFonts: ["TeX"],
+                      linebreaks: { automatic: true } }
+    });
+</script>
+   </HEAD>
+   <BODY>
+<xmp>
+@
+img 3e690099-1045-4fa8-93bc-2209474d8401
+
+Install git
+docker run -it ubuntu:latest --name git /bin/bash
+In ubuntu,
+apt-get update &> /dev/null
+apt-get install -y git &> /dev/null
+
+git --version
+
+For stability, open another terminal
+docker ps
+docker diff <container_id>
+docker commit <container_id> ubuntu:git
+
+
+@
+dockerfile is dsl which is used for docker, written by process of generating image
+
+cd docker_introduction
+make dockerfile
+touch dockerfile
+
+With what iamge will you create docker image?
+I will use ubuntu:16.04
+FROM ubuntu:16.04
+
+# Commands you will run on this image
+RUN apt-get update
+# You must use -y option
+RUN apt-get install -y git
+
+# And build it
+# . means we create docker image by using image located in one step below directory
+# -t ubuntu:git02 means docker image name
+docker build -t ubuntu:git02 .
+
+@
+add file
+You should be one step upper parent directory
+Then, add file located in one step below directory
+ADD data.txt /tmp/data.txt
+
+            
+</xmp>
+   </BODY>
+</HTML>
