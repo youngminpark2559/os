@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+   <HEAD>
+      <TITLE>My first HTML document</TITLE>
+      <style rel="stylesheet" type="text/css">
+body {
+ font-size: 25px;
+ 
+ margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 80px;
+    margin-left: 80px;
+    
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 80px;
+    padding-left: 80px;
+    
+    line-height:1.6em
+}
+</style>
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS" : {
+        availableFonts : ["STIX"],
+        preferredFont : "STIX",
+        webFont : "STIX-Web",
+        imageFont : null
+    }
+});
+</script>
+     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js" type="text/javascript">    
+    MathJax.Hub.Config({
+        HTML: ["input/TeX","output/HTML-CSS"],
+        TeX: { extensions: ["AMSmath.js","AMSsymbols.js"], 
+               equationNumbers: { autoNumber: "AMS" } },
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX","output/HTML-CSS"],
+        tex2jax: { inlineMath: [ ['$$$','$$$'] ],
+                   displayMath: [ ['$$$$','$$$$'] ],
+                   processEscapes: true },
+        "HTML-CSS": { availableFonts: ["TeX"],
+                      linebreaks: { automatic: true } }
+    });
+</script>
+   </HEAD>
+   <BODY>
+<xmp>
+@
+You can download docker images
+https://bit.ly/docker-sk
+
+
+@
+minimalest image which contains files for linux kernel and some tools
+docker run -it busybox:latest sh
+busybox | head -n 1
+# < version
+echo "hello"
+# < hello
+
+@
+Compare between virtual machine and container
+Common points:
+They make users to use different environments
+Different points:
+Virtual machine is virtualizing hardware,
+that is, software implements hardware
+Container is not virtualizing hardware,
+Container uses functionality which is provided by os
+It's fair to say container creates separated new computer
+Container executes processes in separated environments
+Container itself is process running in separated environments
+img a628a132-6af8-4da7-b859-1119b3130d68
+
+@
+3306:3306: port
+You can connect between 'port used in docker' and 'port used in outside'
+docker run -p 3306:3306 --name mysql -d mysql
+
+@
+romove mysql image
+docker rm -f mysql
+
+@
+Client process: docker run ...
+Server prcoess gets above requests
+Then, server transfers requests to container process
+
+@
+img 7b778ce5-cff9-4a41-b7e6-26713378123f
+img 41f07a76-7a5f-45fa-84e3-941d2c0dec66
+            
+</xmp>
+   </BODY>
+</HTML>
