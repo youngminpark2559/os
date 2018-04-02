@@ -72,7 +72,7 @@ cd docker_introduction
 make dockerfile
 touch dockerfile
 
-With what iamge will you create docker image?
+With what image will you create docker image?
 I will use ubuntu:16.04
 FROM ubuntu:16.04
 
@@ -92,6 +92,25 @@ You should be one step upper parent directory
 Then, add file located in one step below directory
 ADD data.txt /tmp/data.txt
 
+@
+https//github.com/nacyot/docker_tutorial
+docker build -t <yourid> /docker_tutorial
+
+@
+You can change name of docker image
+docker tag nacyot/docker_tutorial:latest nacyot/docker_abc:latest
+
+@
+You can use hub.docker.com
+Create repository which will contain images
+docker login
+docker images l grep nacyot/docker_tutorial
+
+You can push image
+docker push nacyot/docker_tutorial:latest
+
+You can pull image
+docker pull nacyot/docker_tutorial
             
 </xmp>
    </BODY>
