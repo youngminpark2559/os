@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+   <HEAD>
+      <TITLE>My first HTML document</TITLE>
+      <style rel="stylesheet" type="text/css">
+body {
+ font-size: 25px;
+ 
+ margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 80px;
+    margin-left: 80px;
+    
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 80px;
+    padding-left: 80px;
+    
+    line-height:1.6em
+}
+</style>
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    "HTML-CSS" : {
+        availableFonts : ["STIX"],
+        preferredFont : "STIX",
+        webFont : "STIX-Web",
+        imageFont : null
+    }
+});
+</script>
+     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js" type="text/javascript">    
+    MathJax.Hub.Config({
+        HTML: ["input/TeX","output/HTML-CSS"],
+        TeX: { extensions: ["AMSmath.js","AMSsymbols.js"], 
+               equationNumbers: { autoNumber: "AMS" } },
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX","output/HTML-CSS"],
+        tex2jax: { inlineMath: [ ['$$$','$$$'] ],
+                   displayMath: [ ['$$$$','$$$$'] ],
+                   processEscapes: true },
+        "HTML-CSS": { availableFonts: ["TeX"],
+                      linebreaks: { automatic: true } }
+    });
+</script>
+   </HEAD>
+   <BODY>
+<xmp>
+@
+docker version
+
+@
+img 3a83449e-e2e7-4149-95cf-f9d80c1a14aa
+
+@
+docker run (options) image[:tag|@DIGEST] [command] [arg]
+
+options:
+-d: detached mode(background mode)
+-p: connect port between host and container (forwading)
+-v: connect directory between host and container (mount)
+-e: configure environment variables which will be used in container
+--name: configure name of container
+--rm: automatically remove container when that container derminates
+-it: use -i and -t option at the same time, this option is for input in terminal
+--network: connect network
+
+@
+run ubuntu container
+docker run ubuntu:16.04
+
+Run shell
+docker run --rm -it ubuntu:16.04 /bin/sh
+docker run -it ubuntu:16.04 /bin/sh
+
+Run CentOS
+docker run -it centos:7 /bin/sh
+
+@
+Let's create simple web application with container
+docker run -d -p 4567:4567 subicura/docker -workshop-app:1
+-d: detached mode(background mode),
+if you don't use it, container doesn't run on background but stops
+-p: connect port between container port and host port
+Open browser and go to localhost:4567,
+and you will see container id
+
+Let's run web application version2
+docker run -d -p 4568:4567 -e ENDPOINT=https://workshop-docker-kr.herokuapp.com/ -e PARAM_NAME=haha subicura/docker-workshop-app:2
+Change host port to 4568 and connect host port(4568) to container port(4567)
+subicura/docker-workshop-app:2
+-> docker-workshop-app image version 2 in subicura account
+-e: set environment variables
+PARAM_NAME: your name
+Connection log will be saved into https://workshop-docker-kr.herokuapp.com/
+
+
+@
+Let's run web application version3
+docker run -d -p 4569:4567 -e ENDPOINT=https://workshop-docker-kr.herokuapp.com/ -e PARAM_NAME=haha -e PARAM_MESSAGE=xxxxxx subicura/docker-workshop-app:3
+
+@
+Let's run Redis
+Redis saves key and value into memory and reads key and value from memory 
+docker run --name=redis -d -p 1234:6379 redis
+Let's test redis with telnet
+keys *
+# < data which are stored in redis
+SET hello world
+# < key: hello, value: world
+GET hello
+# < world
+
+@
+Let's talk about mysql
+See docker hub mysql to see what options and environment variables exist
+docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mysql mysql:5.7
+
+Let's create database after connection to mysql
+docker exec -it mysql mysql
+create database wp CHARACTER SET utf8;
+# authority of wp account
+grant all priviliges on wp.* to wp@'%' identified by 'wp';
+flush priviliges;
+quit
+
+exec command is used when you connect to containing currently running unlike run command
+Generally, we don't install ssh server inside of container
+but we connect to container with exec command
+
+@
+Let's run wordpress
+docker run -d -p 8000:80 -e WORDPRESS_DB_HOST=docker.for.mac.localhost -e WORDPRESS_DB_NAME=wp -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wp wordpress
+# < WORDPRESS_DB_HOST is address of db
+
+Let's check if container runs successfully via web browser
+localhost:8000
+
+@
+Let's run tensorflow
+docker run -it -p 8888:8888 tensorflow/tensorflow
+
+@
+You can see all containers currently running
+docker ps
+
+You can see all containers running and stopped
+docker ps -a
+
+@
+You can stop running one or many containers
+docker stop [options] containerid containerid...
+You can input only first 3 characters for containerid
+docker stop 88a b88 939
+
+@
+You can remove containers
+docker rm <options> containerid containerid...
+
+
+@
+You can see log
+docker logs <options> containerid
+useful options:
+-f: you can see newly created log in real time
+--tail: you see tail of log
+
+@
+You can see list of image you downlaoded
+docker images <options> <repository<:tag>>
+
+@
+You can download image
+docker pull <options> name<:tag|@digest>
+docker pull ubuntu:14.04
+
+"run command" contains "pull command"
+
+@
+You can remove image
+docker rmi <options> imagename imagename
+
+Remove telnet image
+docker rmi mikesplain/telnet
+
+@
+Let's create network
+You can create virtual network which connects containers
+docker network create <options> network
+
+For example, you can create network named 'app-network',
+which connects wordpress container and mysql container
+docker network create app-network
+
+I give name ubuntu and run ubuntu container
+docker run -d -name=ubuntu -it --network=app-network ubuntu:16.04 /bin/sh
+
+I give name ubuntu2 and run ubuntu container
+docker run -d -name=ubuntu2 -it --network=app-network ubuntu:16.04 /bin/sh
+
+We should designate ip address of name=ubuntu container
+But since we designated network=app-network,
+we can connect name=ubuntu container with name without ip address
+
+@
+You can add network onto existing container,
+and you can use existing container in same designated network
+docker network connect <options> network container
+
+I add app-network onto mysql
+docker network connect app-network mysql
+
+@
+You can add wordpress onto app-network,
+and then, you can access to mysql by mysql, not ip
+WORDPRESS_DB_HOST=mysql rather than host's ip
+container's ip where mysql is contained is passed
+docker run -d -p 8000:80 --network=app-network -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_NAME=wp -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wp wordpress
+
+
+@
+You can remove mysql and rerun mysql for exercise and test
+docker stop mysql
+docker rm mysql
+docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --network=app-network --name mysql mysql:5.7
+
+And then, you will run into database error because database is initialized
+
+@
+You can use docker compose
+You will create docker-compose.yml file
+
+vi docker-compose.yml
+
+version: '2'
+
+services:
+    db:
+        image: mysql: 5.7
+        # I connect director of container to directory of host
+        volumes:
+            - ./mysql:/var/lib/mysql
+            restart: always
+            environment:
+                MYSQL_ROOT_PASSWORD: wordpress
+                MYSQL_DATABASE: wordpress
+                MYSQL_USER: wordpress
+                MYSQL_PASSWORD: wordpress
+    wordpress:
+        image: wordpress:latest
+        volumes:
+            - ./wp:/var/www/html
+        ports:
+            - "8000:80"
+        restart: always
+        environment:
+            WORDPRESS_DB_HOST: db:3306
+            WORDPRESS_DB_PASSWORD: wordpress
+
+cat docker-compose.yml
+
+docker-compose up
+
+I terminate mysql and wordpress by using docker compose
+docker-compose down
+            
+</xmp>
+   </BODY>
+</HTML>
