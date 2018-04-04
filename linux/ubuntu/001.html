@@ -397,6 +397,16 @@ curl -fsSL https://get.docker.com/ | sudo sh
 sudo usermod -aG docker $USER # give permission to user who is currently connected
 sudo usermod -aG docker your-user # give permission to user-name
 sudo reboot
+
+@
+ - openjdk-9 install bug
+https://bugs.launchpad.net/ubuntu/+source/openjdk-9/+bug/1550950
+https://askubuntu.com/questions/769467/can-not-install-openjdk-9-jdk-because-it-tries-to-overwrite-file-aready-includ/772485#772485
+sudo apt-get -o Dpkg::Options::="--force-overwrite" install openjdk-9-jdk            
+
+            
+            
+            
             
 </xmp>
    </BODY>
