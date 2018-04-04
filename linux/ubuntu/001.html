@@ -69,10 +69,20 @@ You can see each key code by xev
 @
 sudo apt-get install uim uim-byeoru
 change to uim
- -go to uim setting
+ - go to uim setting
 default to byeoru
 byeoru key setting1: hangul, hangul, hangul-hanja
 
+@
+ - Move to directory where you install font
+cd /usr/share/fonts/
+ - Download font
+wget http://cdn.naver.com/naver/NanumFont/fontfiles/NanumFont_TTF_ALL.zip
+ - Unzip zip file
+unzip NanumFont_TTF_ALL.zip -d NanumFont
+ - Remove zip file   
+rm -f NanumFont_TTF_ALL.zip   
+   
 @
 mouse key
 double click: center
@@ -125,7 +135,7 @@ sudo nvidia-xconfig
 sudo reboot
 sudo nvidia-settings
 
-Articles for infinite login loop
+ - Articles for infinite login loop
 https://askubuntu.com/questions/762831/ubuntu-16-stuck-in-login-loop-after-installing-nvidia-364-drivers
 sudo ubuntu-drivers list
 then use:
