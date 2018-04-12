@@ -373,16 +373,57 @@ source deactivate
 conda remove --name tensorflow --all
 
 @
-konlpy
+You install konlpy
 sudo apt-get install g++ openjdk-9-jdk
 pip3 install JPype1
 pip3 install konlpy
 sudo apt-get install curl
 bash <(curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh)
-            
-https://bitbucket.org/eunjeon/mecab-ko-dic
-            
-            
+
+@
+You install mecab
+*
+You install automake
+*
+You ckeck version
+automake --version
+apt list automake
+*
+You install automake
+sudo apt install automake
+or
+sudo apt install automake1.11
+*
+You install mecab-ko
+tar zxfv mecab-XX-ko-XX.tar.gz
+cd mecab-XX-ko-XX
+./configure 
+make
+make check
+sudo make install
+*
+You install mecab-ko-dic
+tar zxfv mecab-ko-dic-XX.tar.gz
+cd mecab-ko-dic-XX
+./autogen.sh
+./configure
+make
+sudo make install
+*
+You can test
+mecab -d /usr/local/lib/mecab/dic/mecab-ko-dic
+Here, input your text
+*
+You can remove mecab
+sudo apt-get remove mecab
+*
+You can remove mecab-ko-dic
+sudo rm -rf /usr/local/lib/mecab/dic/mecab-ko-dic
+*
+/usr/local/etc/mecabrc
+
+
+
 @
 conda install -c conda-forge jupyterlab
 or
