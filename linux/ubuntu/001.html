@@ -317,18 +317,11 @@ sudo add-apt-repository ppa:jonathonf/backports
 sudo apt-get update && sudo apt-get install sqlite3
 * How to uninstall SQLite from Ubuntu
 sudo apt-get remove sqlite3
-* Install Flask
-pip install Flask
-* sqlite3 webtool
-$ sudo apt install python-setuptools ## sqlite-web설치를 위해 필요
-$ sudo pip install sqlite-web     ## sqlite-web 설치 합니다.
-## 포트번호 3000(기본값은 8080)으로 현재 디렉토리의 test.db 파일을 웹으로 보고싶은 경우 아래 명령과 같이 입력합니다.
-## 만약 test.db파일이 없으면 새로 생성하게 됩니다.
-$ sqlite_web -p 3000 ./test.db ## 하이픈 아니고 언더바임에 주의하세요. 
-* Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
-127.0.0.1 - - [20/Sep/2016 16:25:24] "GET / HTTP/1.1" 200 -
-Created new window in existing browser session.
-위와 같이 실행한 경우 브라우져에서 http://127.0.0.1:3000/ 로  접속하시면 아래 그림과 같은 결과가 나올 것입니다.
+* How to Install SQLite Browser 3.9.1 on Ubuntu 16.10, Ubuntu 16.04, Ubuntu 16.04
+sudo add-apt-repository ppa:linuxgndu/sqlitebrowser-testing
+sudo apt-get update && sudo apt-get install sqlitebrowser
+* How to remove SQLite Browser from Ubuntu
+sudo apt-get remove sqlitebrowser
    
    
    
