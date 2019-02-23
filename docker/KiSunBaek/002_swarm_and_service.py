@@ -391,7 +391,7 @@ The network you created is shared between workers,
 and load-balancing is also possible.
 
 # ======================================================================
-# /home/young/Pictures/2019_02_23_10:10:51.png
+https://raw.githubusercontent.com/youngminpark2559/os/master/docker/KiSunBaek/pics/2019_02_23_10:10:51.png
 
 192.168.99.100: IP of worker
 8080: port
